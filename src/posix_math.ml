@@ -66,3 +66,45 @@ external tanh : float -> float = "math_tanh"
 external tgamma : float -> float = "math_tgamma"
 external trunc : float -> float = "math_trunc"
 
+external fexcept_init : unit -> (int * int * int * int * int * int) = "fexcept_init"
+module Fexcept = struct
+  type t = int
+
+  let (
+    fe_all_except,
+    fe_divbyzero,
+    fe_inexact,
+    fe_invalid,
+    fe_overflow,
+    fe_underflow
+  ) = fexcept_init ()
+
+  let union a b = a lor b
+end
+external feclearexcept : Fexcept.t -> unit = "fenv_feclearexcept"
+external fegetexceptflag : Fexcept.t -> Fexcept.t = "fenv_fegetexceptflag"
+external feraiseexcept : Fexcept.t -> unit = "fenv_feraiseexcept"
+external fetestexcept : Fexcept.t -> Fexcept.t = "fenv_fetestexcept"
+external fesetexceptflag : Fexcept.t -> unit = "fenv_fesetexceptflag"
+
+external fround_init : unit -> int * int * int * int = "fround_init"
+module Fround = struct
+  type t = int
+  let (
+    fe_tonearest,
+    fe_upward,
+    fe_downward,
+    fe_towardzero
+  ) = fround_init ()
+end
+external fesetround : Fround.t -> unit = "fenv_fesetround"
+external fegetround : unit -> Fround.t = "fenv_fegetround"
+
+module Fenv = struct
+  type t
+end
+external fegetenv : unit -> Fenv.t = "fenv_fegetenv"
+external fesetenv : Fenv.t -> unit = "fenv_fesetenv"
+external feupdateenv : Fenv.t -> unit = "fenv_feupdateenv"
+external feholdexcept : unit -> Fenv.t = "fenv_feholdexcept"
+

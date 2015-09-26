@@ -105,17 +105,40 @@ val isnormal : float -> bool
 val isunordered : float -> bool
 val nan : string -> float
 
-type fexcept
-
-int  feclearexcept(int);
-int  fegetenv(fenv_t * );
-int  fegetexceptflag(fexcept_t *, int);
-int  fegetround(void);
-int  feholdexcept(fenv_t * );
-int  feraiseexcept(int);
-int  fesetenv(const fenv_t * );
-int  fesetexceptflag(const fexcept_t *, int);
-int  fesetround(int);
-int  fetestexcept(int);
-int  feupdateenv(const fenv_t * );
 *)
+
+module Fexcept : sig
+  type t
+  val fe_all_except : t
+  val fe_divbyzero : t
+  val fe_inexact : t
+  val fe_invalid : t
+  val fe_overflow : t
+  val fe_underflow : t
+
+  val union : t -> t -> t
+end
+val feclearexcept : Fexcept.t -> unit
+val fegetexceptflag : Fexcept.t -> Fexcept.t
+val feraiseexcept : Fexcept.t -> unit
+val fetestexcept : Fexcept.t -> Fexcept.t
+val fesetexceptflag : Fexcept.t -> unit
+
+module Fenv : sig
+  type t
+end
+val fegetenv : unit -> Fenv.t
+val fesetenv : Fenv.t -> unit
+val feupdateenv : Fenv.t -> unit
+val feholdexcept : unit -> Fenv.t
+
+module Fround : sig
+  type t
+  val fe_tonearest : t
+  val fe_upward : t
+  val fe_downward : t
+  val fe_towardzero : t
+end
+val fesetround : Fround.t -> unit
+val fegetround : unit -> Fround.t
+

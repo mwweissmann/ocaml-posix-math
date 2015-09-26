@@ -7,6 +7,7 @@
 #include <time.h>
 #include <math.h>
 #include <complex.h>
+#include <fenv.h>
 
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
@@ -372,4 +373,124 @@ CAMLprim value math_trunc(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_double(trunc(Double_val(x))));
 }
+
+value eunix;
+
+CAMLprim value fexcept_init(value unit) {
+  CAMLparam1(unit);
+  CAMLlocal1(flags);
+
+  eunix = caml_hash_variant("EUnix");
+
+  flags = caml_alloc(6, 0);
+
+  Store_field(flags, 0, Val_int(FE_ALL_EXCEPT));
+  Store_field(flags, 1, Val_int(FE_DIVBYZERO));
+  Store_field(flags, 2, Val_int(FE_INEXACT));
+  Store_field(flags, 3, Val_int(FE_INVALID));
+  Store_field(flags, 4, Val_int(FE_OVERFLOW));
+  Store_field(flags, 5, Val_int(FE_UNDERFLOW));
+
+  CAMLreturn(flags);
+}
+
+CAMLprim value fenv_feclearexcept(value flags) {
+  CAMLparam1(flags);
+  feclearexcept(Int_val(flags));
+  CAMLreturn(Val_unit);
+}
+
+// TODO begin
+CAMLprim value fenv_fegetexceptflag(value flags) {
+  CAMLparam1(flags);
+  fexcept_t f;
+  fegetexceptflag(&f, Int_val(flags));
+  CAMLreturn(Val_int(f));
+}
+
+CAMLprim value fenv_feraiseexcept(value flags) {
+  CAMLparam1(flags);
+  int rc;
+  rc = feraiseexcept(Int_val(flags));
+  CAMLreturn(Val_unit);
+}
+
+CAMLprim value fenv_fetestexcept(value flags) {
+  CAMLparam1(flags);
+  CAMLreturn(Val_unit);
+}
+
+CAMLprim value fenv_fesetexceptflag(value flags) {
+  CAMLparam1(flags);
+  CAMLreturn(Val_unit);
+}
+
+CAMLprim value fround_init(value unit) {
+  CAMLparam1(unit);
+  CAMLlocal1(flags);
+
+  flags = caml_alloc(4, 0);
+  Store_field(flags, 0, Val_int(FE_TONEAREST));
+  Store_field(flags, 1, Val_int(FE_UPWARD));
+  Store_field(flags, 2, Val_int(FE_DOWNWARD));
+  Store_field(flags, 3, Val_int(FE_TOWARDZERO));
+
+  CAMLreturn(flags);
+}
+
+CAMLprim value fenv_fesetround(value flags) {
+  CAMLparam1(flags);
+  fesetround(Int_val(flags));
+  CAMLreturn(Val_unit);
+}
+
+CAMLprim value fenv_fegetround(value unit) {
+  CAMLparam1(unit);
+  int rc;
+  rc = fegetround();
+  CAMLreturn(Val_int(rc));
+}
+
+
+static struct custom_operations fenv_custom_ops = {
+  identifier:  "Posix_math.fenv",
+  finalize:    custom_finalize_default,
+  compare:     custom_compare_default,
+  hash:        custom_hash_default,
+  serialize:   custom_serialize_default,
+  deserialize: custom_deserialize_default
+};
+
+static value caml_copy_fenv(fenv_t *e) {
+  CAMLparam0();
+  CAMLlocal1(v);
+  v = caml_alloc_custom(&fenv_custom_ops, sizeof(fenv_t*), 0, 1);
+  memcpy(Data_custom_val(v), e, sizeof(fenv_t*));
+  CAMLreturn(v);
+}
+
+CAMLprim value fenv_fegetenv(value unit) {
+  CAMLparam1(unit);
+  CAMLlocal1(env);
+  fenv_t *f;
+  fegetenv(f);
+  CAMLreturn(caml_copy_fenv(f));
+}
+
+CAMLprim value fenv_feholdexcept(value unit) {
+  CAMLparam1(unit);
+  CAMLreturn(Val_unit);
+}
+
+CAMLprim value fenv_feupdateenv(value unit) {
+  CAMLparam1(unit);
+  CAMLreturn(Val_unit);
+}
+
+CAMLprim value fenv_fesetenv(value unit) {
+  CAMLparam1(unit);
+  CAMLreturn(Val_unit);
+}
+
+// TODO end
 
