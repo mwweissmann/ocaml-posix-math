@@ -1,0 +1,38 @@
+# OASIS_START
+# DO NOT EDIT (digest: 9c614cb9cb262c6e41a321cb135a040a)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
+# useless stuff for the build process
+true: annot, bin_annot
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library posix-math
+"src/posix-math.cmxs": use_posix-math
+<src/*.ml{,i,y}>: oasis_library_posix_math_ccopt
+"src/math.c": oasis_library_posix_math_ccopt
+<src/posix-math.{cma,cmxa}>: oasis_library_posix_math_cclib
+"src/libposix-math_stubs.lib": oasis_library_posix_math_cclib
+"src/dllposix-math_stubs.dll": oasis_library_posix_math_cclib
+"src/libposix-math_stubs.a": oasis_library_posix_math_cclib
+"src/dllposix-math_stubs.so": oasis_library_posix_math_cclib
+<src/posix-math.{cma,cmxa}>: use_libposix-math_stubs
+<src/*.ml{,i,y}>: pkg_result
+<src/*.ml{,i,y}>: pkg_unix
+"src/math.c": pkg_result
+"src/math.c": pkg_unix
+# Executable test
+<test/test.{native,byte}>: pkg_result
+<test/test.{native,byte}>: pkg_unix
+<test/test.{native,byte}>: use_posix-math
+<test/*.ml{,i,y}>: pkg_result
+<test/*.ml{,i,y}>: pkg_unix
+<test/*.ml{,i,y}>: use_posix-math
+# OASIS_STOP

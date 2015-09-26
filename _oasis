@@ -1,0 +1,38 @@
+OASISFormat: 0.4
+Name:        posix-math
+Version:     0.3.0
+Synopsis:    POSIX math functions
+Authors:     Markus W. Weissmann <markus.weissmann@in.tum.de>
+Maintainers: Markus W. Weissmann <markus.weissmann@in.tum.de>
+Homepage:    https://github.com/mwweissmann/ocaml-posix-math/
+License:     MIT
+Plugins:     META (0.4)
+
+Library "posix-math"
+  Path:                 src/
+  BuildTools:           ocamlbuild
+  Modules:              Posix_math
+  CSources:             math.c
+  CCLib:                -lrt
+  CCOpt:                -O2 -Wall -Wextra -Wno-unused-parameter
+  BuildDepends:         result, unix
+
+Document "api"
+  Title:                API reference for POSIX math
+  Type:                 ocamlbuild (0.4)
+  Install:              false
+  BuildTools:           ocamlbuild, ocamldoc
+  Format:               HTML
+  Index:                index.html
+  XOCamlbuildPath:      src/
+  XOCamlbuildLibraries: posix-math
+
+Executable "test"
+  Path:                 test/
+  MainIs:               test.ml
+  BuildDepends:         posix-math
+  CompiledObject:       best
+  BuildTools:           ocamlbuild
+  Install:              false
+  Build:                true
+
