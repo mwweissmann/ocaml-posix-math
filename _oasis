@@ -13,9 +13,9 @@ Library "posix-math"
   BuildTools:           ocamlbuild
   Modules:              Posix_math
   CSources:             math.c
-  CCLib:                -lrt
+  CCLib:                -lm
   CCOpt:                -O2 -Wall -Wextra -Wno-unused-parameter
-  BuildDepends:         result, unix
+  BuildDepends:         result
 
 Document "api"
   Title:                API reference for POSIX math

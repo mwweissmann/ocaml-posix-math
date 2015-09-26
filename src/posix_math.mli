@@ -127,10 +127,10 @@ val fesetexceptflag : Fexcept.t -> unit
 module Fenv : sig
   type t
 end
-val fegetenv : unit -> Fenv.t
-val fesetenv : Fenv.t -> unit
-val feupdateenv : Fenv.t -> unit
-val feholdexcept : unit -> Fenv.t
+val fegetenv : unit -> (Fenv.t, [>`Error]) Result.result
+val fesetenv : Fenv.t -> (unit, [>`Error]) Result.result
+val feupdateenv : Fenv.t -> (unit, [>`Error]) Result.result
+val feholdexcept : unit -> (Fenv.t, [>`Error]) Result.result
 
 module Fround : sig
   type t
@@ -139,6 +139,6 @@ module Fround : sig
   val fe_downward : t
   val fe_towardzero : t
 end
-val fesetround : Fround.t -> unit
-val fegetround : unit -> Fround.t
+val fesetround : Fround.t -> (unit, [>`Error]) Result.result
+val fegetround : unit -> (Fround.t, [>`Error]) Result.result
 

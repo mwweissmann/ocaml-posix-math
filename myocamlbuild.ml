@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 585bec94ce5aaabc5c16d0ac6e3d806a) *)
+(* DO NOT EDIT (digest: 776d95abf95191199e110432aaba48d6) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -627,9 +627,9 @@ let package_default =
                    ])
             ]);
           (["oasis_library_posix_math_cclib"; "link"],
-            [(OASISExpr.EBool true, S [A "-cclib"; A "-lrt"])]);
+            [(OASISExpr.EBool true, S [A "-cclib"; A "-lm"])]);
           (["oasis_library_posix_math_cclib"; "ocamlmklib"; "c"],
-            [(OASISExpr.EBool true, S [A "-lrt"])])
+            [(OASISExpr.EBool true, S [A "-lm"])])
        ];
      includes = [("test", ["src"])]
   }

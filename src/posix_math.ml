@@ -97,14 +97,14 @@ module Fround = struct
     fe_towardzero
   ) = fround_init ()
 end
-external fesetround : Fround.t -> unit = "fenv_fesetround"
-external fegetround : unit -> Fround.t = "fenv_fegetround"
+external fesetround : Fround.t -> (unit, [>`Error]) Result.result = "fenv_fesetround"
+external fegetround : unit -> (Fround.t, [>`Error]) Result.result = "fenv_fegetround"
 
 module Fenv = struct
   type t
 end
-external fegetenv : unit -> Fenv.t = "fenv_fegetenv"
-external fesetenv : Fenv.t -> unit = "fenv_fesetenv"
-external feupdateenv : Fenv.t -> unit = "fenv_feupdateenv"
-external feholdexcept : unit -> Fenv.t = "fenv_feholdexcept"
+external fegetenv : unit -> (Fenv.t, [>`Error]) Result.result = "fenv_fegetenv"
+external fesetenv : Fenv.t -> (unit, [>`Error]) Result.result = "fenv_fesetenv"
+external feupdateenv : Fenv.t -> (unit, [>`Error]) Result.result = "fenv_feupdateenv"
+external feholdexcept : unit -> (Fenv.t, [>`Error]) Result.result = "fenv_feholdexcept"
 

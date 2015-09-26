@@ -25,12 +25,12 @@ int complex_compare(value v1, value v2) {
 }
 
 static struct custom_operations complex_custom_ops = {
-  identifier:  "Posix_math.complex",
-  finalize:    custom_finalize_default,
-  compare:     complex_compare,
-  hash:        custom_hash_default,
-  serialize:   custom_serialize_default,
-  deserialize: custom_deserialize_default
+  .identifier  = "Posix_math.complex",
+  .finalize    = custom_finalize_default,
+  .compare     = complex_compare,
+  .hash        = custom_hash_default,
+  .serialize   = custom_serialize_default,
+  .deserialize = custom_deserialize_default
 };
 
 static value caml_copy_complex(double complex c) {
@@ -374,13 +374,13 @@ CAMLprim value math_trunc(value x) {
   CAMLreturn(caml_copy_double(trunc(Double_val(x))));
 }
 
-value eunix;
+static value error;
 
 CAMLprim value fexcept_init(value unit) {
   CAMLparam1(unit);
   CAMLlocal1(flags);
 
-  eunix = caml_hash_variant("EUnix");
+  error = caml_hash_variant("Error");
 
   flags = caml_alloc(6, 0);
 
@@ -440,56 +440,163 @@ CAMLprim value fround_init(value unit) {
 
 CAMLprim value fenv_fesetround(value flags) {
   CAMLparam1(flags);
-  fesetround(Int_val(flags));
-  CAMLreturn(Val_unit);
+  CAMLlocal1(result);
+  int rc;
+
+  rc = fesetround(Int_val(flags));
+  if (0 != rc) {
+    goto ERROR;
+  }
+
+  result = caml_alloc(1, 0); // Result.Ok
+  Store_field(result, 0, Val_unit);
+  goto END;
+
+ERROR:
+  result = caml_alloc(1, 1); // Result.Error
+  Store_field(result, 0, error); // `Error
+
+END:
+  CAMLreturn(result);
 }
 
 CAMLprim value fenv_fegetround(value unit) {
   CAMLparam1(unit);
+  CAMLlocal1(result);
   int rc;
   rc = fegetround();
-  CAMLreturn(Val_int(rc));
+
+  if (0 > rc) {
+    goto ERROR;
+  }
+
+  result = caml_alloc(1, 0); // Result.Ok
+  Store_field(result, 0, Val_int(rc));
+  goto END;
+
+ERROR:
+  result = caml_alloc(1, 1); // Result.Error
+  Store_field(result, 0, error); // `Error
+
+END:
+  CAMLreturn(result);
 }
 
+#define Fenv_val(v) (* (fenv_t *)(v))
 
 static struct custom_operations fenv_custom_ops = {
-  identifier:  "Posix_math.fenv",
-  finalize:    custom_finalize_default,
-  compare:     custom_compare_default,
-  hash:        custom_hash_default,
-  serialize:   custom_serialize_default,
-  deserialize: custom_deserialize_default
+  .identifier  = "Posix_math.fenv",
+  .finalize    = custom_finalize_default,
+  .compare     = custom_compare_default,
+  .hash        = custom_hash_default,
+  .serialize   = custom_serialize_default,
+  .deserialize = custom_deserialize_default
 };
 
 static value caml_copy_fenv(fenv_t *e) {
   CAMLparam0();
   CAMLlocal1(v);
-  v = caml_alloc_custom(&fenv_custom_ops, sizeof(fenv_t*), 0, 1);
-  memcpy(Data_custom_val(v), e, sizeof(fenv_t*));
+  v = caml_alloc_custom(&fenv_custom_ops, sizeof(fenv_t), 0, 1);
+  memcpy(Data_custom_val(v), e, sizeof(fenv_t));
   CAMLreturn(v);
 }
 
 CAMLprim value fenv_fegetenv(value unit) {
   CAMLparam1(unit);
-  CAMLlocal1(env);
-  fenv_t *f;
-  fegetenv(f);
-  CAMLreturn(caml_copy_fenv(f));
+  CAMLlocal1(result);
+  fenv_t f;
+  int rc;
+
+  rc = fegetenv(&f);
+
+  if (0 != rc) {
+    goto ERROR;
+  }
+
+  result = caml_alloc(1, 0); // Result.Ok
+  Store_field(result, 0, caml_copy_fenv(&f));
+  goto END;
+
+ERROR:
+  result = caml_alloc(1, 1); // Result.Error
+  Store_field(result, 0, error); // `Error
+
+END:
+  CAMLreturn(result);
 }
 
 CAMLprim value fenv_feholdexcept(value unit) {
   CAMLparam1(unit);
-  CAMLreturn(Val_unit);
+  CAMLlocal1(result);
+  fenv_t f;
+  int rc;
+
+  rc = feholdexcept(&f);
+
+  if (0 != rc) {
+    goto ERROR;
+  }
+
+  result = caml_alloc(1, 0); // Result.Ok
+  Store_field(result, 0, caml_copy_fenv(&f));
+  goto END;
+
+ERROR:
+  result = caml_alloc(1, 1); // Result.Error
+  Store_field(result, 0, error); // `Error
+
+END:
+  CAMLreturn(result);
 }
 
-CAMLprim value fenv_feupdateenv(value unit) {
-  CAMLparam1(unit);
-  CAMLreturn(Val_unit);
+CAMLprim value fenv_feupdateenv(value fenv) {
+  CAMLparam1(fenv);
+  CAMLlocal1(result);
+  fenv_t f;
+  int rc;
+
+  f = Fenv_val(fenv);
+  rc = feupdateenv(&f);
+
+  if (0 != rc) {
+    goto ERROR;
+  }
+
+  result = caml_alloc(1, 0); // Result.Ok
+  Store_field(result, 0, Val_unit);
+  goto END;
+
+ERROR:
+  result = caml_alloc(1, 1); // Result.Error
+  Store_field(result, 0, error); // `Error
+
+END:
+  CAMLreturn(result);
 }
 
-CAMLprim value fenv_fesetenv(value unit) {
-  CAMLparam1(unit);
-  CAMLreturn(Val_unit);
+CAMLprim value fenv_fesetenv(value fenv) {
+  CAMLparam1(fenv);
+  CAMLlocal1(result);
+  fenv_t f;
+  int rc;
+
+  f = Fenv_val(fenv);
+  rc = fesetenv(&f);
+
+  if (0 != rc) {
+    goto ERROR;
+  }
+
+  result = caml_alloc(1, 0); // Result.Ok
+  Store_field(result, 0, Val_unit);
+  goto END;
+
+ERROR:
+  result = caml_alloc(1, 1); // Result.Error
+  Store_field(result, 0, error); // `Error
+
+END:
+  CAMLreturn(result);
 }
 
 // TODO end

@@ -1,8 +1,8 @@
 # OASIS_START
-# DO NOT EDIT (digest: 979b6fbab84c7d4e56d04a631e8f4395)
+# DO NOT EDIT (digest: 866350f7c5dce7fde4eb018f9d13660b)
 version = "0.3.0"
 description = "POSIX math functions"
-requires = "result unix"
+requires = "result"
 archive(byte) = "posix-math.cma"
 archive(byte, plugin) = "posix-math.cma"
 archive(native) = "posix-math.cmxa"
