@@ -107,7 +107,7 @@ val nan : string -> float
 
 *)
 
-module Fexcept : sig
+module Fexcepts : sig
   type t
   val fe_all_except : t
   val fe_divbyzero : t
@@ -118,11 +118,15 @@ module Fexcept : sig
 
   val union : t -> t -> t
 end
-val feclearexcept : Fexcept.t -> unit
-val fegetexceptflag : Fexcept.t -> Fexcept.t
-val feraiseexcept : Fexcept.t -> unit
-val fetestexcept : Fexcept.t -> Fexcept.t
-val fesetexceptflag : Fexcept.t -> unit
+val feclearexcept : Fexcepts.t -> (unit, [>`Error]) Result.result
+val feraiseexcept : Fexcepts.t -> (unit, [>`Error]) Result.result
+val fetestexcept : Fexcepts.t -> (Fexcepts.t, [>`Error]) Result.result
+
+module Fexcept : sig
+  type t
+end
+val fesetexceptflag : Fexcept.t -> Fexcepts.t -> (unit, [>`Error]) Result.result
+val fegetexceptflag : Fexcepts.t -> (Fexcept.t, [>`Error]) Result.result
 
 module Fenv : sig
   type t

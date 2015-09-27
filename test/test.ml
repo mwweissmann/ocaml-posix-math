@@ -9,7 +9,7 @@ let _ =
   print_endline "done"
 
 let _ =
-  feclearexcept Fexcept.fe_all_except;
+  feclearexcept Fexcepts.fe_all_except;
   fesetround Fround.fe_downward;
   Printf.printf "%f\n" (1.0 /. 0.0);
   Printf.printf "%f -> %f\n" x (rint x); (* 11.0 *)

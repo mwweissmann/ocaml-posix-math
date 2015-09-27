@@ -1,11 +1,11 @@
 type complex
 
-external acos : float -> float = "math_acos"
+let acos = Pervasives.acos
 external acosh : float -> float = "math_acosh"
-external asin : float -> float = "math_asin"
+let asin = Pervasives.asin
 external asinh : float -> float = "math_asinh"
-external atan : float -> float = "math_atan"
-external atan2 : float -> float -> float = "math_atan2"
+let atan = Pervasives.atan
+let atan2 = Pervasives.atan2
 external atanh : float -> float = "math_atanh"
 external cabs : complex -> float = "math_cabs"
 external cacos : complex -> complex = "math_cacos"
@@ -24,7 +24,7 @@ external cimag : complex -> float = "math_cimag"
 external clog : complex -> complex = "math_clog"
 external conj : complex -> complex = "math_conj"
 external copysign : float -> float -> float = "math_copysign"
-external cos : float -> float = "math_cos"
+let cos = Pervasives.cos
 external cosh : float -> float = "math_cosh"
 external cpow : complex -> complex -> complex = "math_cpow"
 external cproj : complex -> complex = "math_cproj"
@@ -34,13 +34,13 @@ external csinh : complex -> complex = "math_csinh"
 external csqrt : complex -> complex = "math_csqrt"
 external ctan : complex -> complex = "math_ctan"
 external ctanh : complex -> complex = "math_ctanh"
-external ldexp : float -> int -> float = "math_ldexp"
+let ldexp = Pervasives.ldexp
 external lgamma : float -> float = "math_lgamma"
 external llrint : float -> int64 = "math_llrint"
 external llround : float -> int64 = "math_llround"
-external log : float -> float = "math_log"
-external log10 : float -> float = "math_log10"
-external log1p : float -> float = "math_log1p"
+let log = Pervasives.log
+let log10 = Pervasives.log10
+let log1p = Pervasives.log1p
 external log2 : float -> float = "math_log2"
 external logb : float -> float = "math_logb"
 external lrint : float -> int32 = "math_lrint"
@@ -52,22 +52,21 @@ external nexttoward : float -> float -> float = "math_nexttoward"
 external pow : float -> float -> float = "math_pow"
 external remainder : float -> float -> float = "math_remainder"
 external remquo : float -> float -> float * int = "math_remquo"
-
 external rint : float -> float = "math_rint"
 external round : float -> float = "math_round"
 external scalbln : float -> int64 -> float = "math_scalbln"
 external scalbn : float -> int -> float = "math_scalbn"
 external signbit : float -> int = "math_signbit"
-external sin : float -> float = "math_sin"
-external sinh : float -> float = "math_sinh"
-external sqrt : float -> float = "math_sqrt"
-external tan : float -> float = "math_tan"
+let sin = Pervasives.sin
+let sinh = Pervasives.sinh
+let sqrt = Pervasives.sqrt
+let tan = Pervasives.tan
 external tanh : float -> float = "math_tanh"
 external tgamma : float -> float = "math_tgamma"
 external trunc : float -> float = "math_trunc"
 
 external fexcept_init : unit -> (int * int * int * int * int * int) = "fexcept_init"
-module Fexcept = struct
+module Fexcepts = struct
   type t = int
 
   let (
@@ -81,11 +80,15 @@ module Fexcept = struct
 
   let union a b = a lor b
 end
-external feclearexcept : Fexcept.t -> unit = "fenv_feclearexcept"
-external fegetexceptflag : Fexcept.t -> Fexcept.t = "fenv_fegetexceptflag"
-external feraiseexcept : Fexcept.t -> unit = "fenv_feraiseexcept"
-external fetestexcept : Fexcept.t -> Fexcept.t = "fenv_fetestexcept"
-external fesetexceptflag : Fexcept.t -> unit = "fenv_fesetexceptflag"
+external feclearexcept : Fexcepts.t -> (unit, [>`Error]) Result.result = "fenv_feclearexcept"
+external feraiseexcept : Fexcepts.t -> (unit, [>`Error]) Result.result = "fenv_feraiseexcept"
+external fetestexcept : Fexcepts.t -> (Fexcepts.t, [>`Error]) Result.result = "fenv_fetestexcept"
+
+module Fexcept = struct
+  type t
+end
+external fesetexceptflag : Fexcept.t -> Fexcepts.t -> (unit, [>`Error]) Result.result = "fenv_fesetexceptflag"
+external fegetexceptflag : Fexcepts.t -> (Fexcept.t, [>`Error]) Result.result = "fenv_fegetexceptflag"
 
 external fround_init : unit -> int * int * int * int = "fround_init"
 module Fround = struct
