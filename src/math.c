@@ -18,26 +18,14 @@
 #include <caml/unixsupport.h>
 #include <caml/custom.h>
 
-#define Complex_val(v) (* (double complex *)(v))
-
-int complex_compare(value v1, value v2) {
-  return memcmp(Data_custom_val(v1), Data_custom_val(v2), sizeof(double complex));
-}
-
-static struct custom_operations complex_custom_ops = {
-  .identifier  = "Posix_math.complex",
-  .finalize    = custom_finalize_default,
-  .compare     = complex_compare,
-  .hash        = custom_hash_default,
-  .serialize   = custom_serialize_default,
-  .deserialize = custom_deserialize_default
-};
+#define Complex_val(v) ((double complex) (Double_val(Field(v, 0)) + I * Double_val(Field(v, 0))))
 
 static value caml_copy_complex(double complex c) {
   CAMLparam0();
   CAMLlocal1(v);
-  v = caml_alloc_custom(&complex_custom_ops, sizeof(double complex), 0, 1);
-  memcpy(Data_custom_val(v), &c, sizeof(double complex));
+  v = caml_alloc(2, 0);
+  Store_field(v, 0, caml_copy_double(creal(c)));
+  Store_field(v, 1, caml_copy_double(cimag(c)));
   CAMLreturn(v);
 }
 

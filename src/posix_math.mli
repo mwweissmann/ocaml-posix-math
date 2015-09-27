@@ -25,7 +25,7 @@ THE SOFTWARE.
   @author Markus W. Weissmann
 *)
 
-type complex
+type complex = Complex.t
 
 val acos : float -> float
 val acosh : float -> float
