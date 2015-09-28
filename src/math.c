@@ -8,7 +8,6 @@
 #include <math.h>
 #include <complex.h>
 #include <fenv.h>
-#include <stdio.h>
 
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
@@ -21,7 +20,7 @@
 
 #include "ocaml_posix_math.h"
 
-static value caml_copy_complex(double complex c) {
+CAMLprim value caml_copy_complex(double complex c) {
   CAMLparam0();
   CAMLlocal1(v);
   v = caml_alloc(2, 0);
@@ -258,8 +257,6 @@ CAMLprim value math_trunc(value x) {
   CAMLreturn(caml_copy_double(trunc(Double_val(x))));
 }
 
-#define Fexcept_val(v) (* (fexcept_t *)(v))
-
 static struct custom_operations fexcept_custom_ops = {
   .identifier  = "Posix_math.fexcept",
   .finalize    = custom_finalize_default,
@@ -269,15 +266,13 @@ static struct custom_operations fexcept_custom_ops = {
   .deserialize = custom_deserialize_default
 };
 
-static value caml_copy_fexcept(fexcept_t *e) {
+CAMLprim value caml_copy_fexcept(fexcept_t *e) {
   CAMLparam0();
   CAMLlocal1(v);
   v = caml_alloc_custom(&fexcept_custom_ops, sizeof(fexcept_t), 0, 1);
   memcpy(Data_custom_val(v), e, sizeof(fexcept_t));
   CAMLreturn(v);
 }
-
-#define Fenv_val(v) (* (fenv_t *)(v))
 
 static struct custom_operations fenv_custom_ops = {
   .identifier  = "Posix_math.fenv",
@@ -288,7 +283,7 @@ static struct custom_operations fenv_custom_ops = {
   .deserialize = custom_deserialize_default
 };
 
-static value caml_copy_fenv(fenv_t *e) {
+CAMLprim value caml_copy_fenv(fenv_t *e) {
   CAMLparam0();
   CAMLlocal1(v);
   v = caml_alloc_custom(&fenv_custom_ops, sizeof(fenv_t), 0, 1);

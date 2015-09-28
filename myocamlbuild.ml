@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 776d95abf95191199e110432aaba48d6) *)
+(* DO NOT EDIT (digest: fa5f43ef078f1b28a7c1e41b1e5519aa) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -608,7 +608,7 @@ open Ocamlbuild_plugin;;
 let package_default =
   {
      MyOCamlbuildBase.lib_ocaml = [("posix-math", ["src"], [])];
-     lib_c = [("posix-math", "src/", [])];
+     lib_c = [("posix-math", "src/", ["src/ocaml_posix_math.h"])];
      flags =
        [
           (["oasis_library_posix_math_ccopt"; "compile"],
