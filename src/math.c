@@ -8,6 +8,7 @@
 #include <math.h>
 #include <complex.h>
 #include <fenv.h>
+#include <stdio.h>
 
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
@@ -18,20 +19,15 @@
 #include <caml/unixsupport.h>
 #include <caml/custom.h>
 
-#define Complex_val(v) ((double complex) (Double_val(Field(v, 0)) + I * Double_val(Field(v, 0))))
+#include "ocaml_posix_math.h"
 
 static value caml_copy_complex(double complex c) {
   CAMLparam0();
   CAMLlocal1(v);
   v = caml_alloc(2, 0);
-  Store_field(v, 0, caml_copy_double(creal(c)));
-  Store_field(v, 1, caml_copy_double(cimag(c)));
+  Store_double_field(v, 0, creal(c));
+  Store_double_field(v, 1, cimag(c));
   CAMLreturn(v);
-}
-
-CAMLprim value math_acos(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(acos(Double_val(x))));
 }
 
 CAMLprim value math_acosh(value x) {
@@ -39,24 +35,9 @@ CAMLprim value math_acosh(value x) {
   CAMLreturn(caml_copy_double(acosh(Double_val(x))));
 }
 
-CAMLprim value math_asin(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(asin(Double_val(x))));
-}
-
 CAMLprim value math_asinh(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_double(asinh(Double_val(x))));
-}
-
-CAMLprim value math_atan(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(atan(Double_val(x))));
-}
-
-CAMLprim value math_atan2(value x, value y) {
-  CAMLparam2(x, y);
-  CAMLreturn(caml_copy_double(atan2(Double_val(x), Double_val(y))));
 }
 
 CAMLprim value math_atanh(value x) {
@@ -77,11 +58,6 @@ CAMLprim value math_cacos(value x) {
 CAMLprim value math_cacosh(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_complex(cacosh(Complex_val(x))));
-}
-
-CAMLprim value math_carg(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(carg(Complex_val(x))));
 }
 
 CAMLprim value math_casin(value x) {
@@ -124,34 +100,9 @@ CAMLprim value math_ceil(value x) {
   CAMLreturn(caml_copy_double(ceil(Double_val(x))));
 }
 
-CAMLprim value math_cexp(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_complex(cexp(Complex_val(x))));
-}
-
-CAMLprim value math_cimag(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(cimag(Complex_val(x))));
-}
-
-CAMLprim value math_clog(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_complex(clog(Complex_val(x))));
-}
-
-CAMLprim value math_conj(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_complex(conj(Complex_val(x))));
-}
-
 CAMLprim value math_copysign(value x, value y) {
   CAMLparam2(x, y);
   CAMLreturn(caml_copy_double(copysign(Double_val(x), Double_val(y))));
-}
-
-CAMLprim value math_cos(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(conj(Double_val(x))));
 }
 
 CAMLprim value math_cosh(value x) {
@@ -159,19 +110,9 @@ CAMLprim value math_cosh(value x) {
   CAMLreturn(caml_copy_double(cosh(Double_val(x))));
 }
 
-CAMLprim value math_cpow(value x, value y) {
-  CAMLparam2(x, y);
-  CAMLreturn(caml_copy_complex(cpow(Complex_val(x), Complex_val(y))));
-}
-
 CAMLprim value math_cproj(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_complex(cproj(Complex_val(x))));
-}
-
-CAMLprim value math_creal(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(creal(Complex_val(x))));
 }
 
 CAMLprim value math_csin(value x) {
@@ -184,11 +125,6 @@ CAMLprim value math_csinh(value x) {
   CAMLreturn(caml_copy_complex(csinh(Complex_val(x))));
 }
 
-CAMLprim value math_csqrt(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_complex(csqrt(Complex_val(x))));
-}
-
 CAMLprim value math_ctan(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_complex(ctan(Complex_val(x))));
@@ -197,11 +133,6 @@ CAMLprim value math_ctan(value x) {
 CAMLprim value math_ctanh(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_complex(ctanh(Complex_val(x))));
-}
-
-CAMLprim value math_ldexp(value x, value y) {
-  CAMLparam2(x, y);
-  CAMLreturn(caml_copy_double(ldexp(Double_val(x), Int_val(y))));
 }
 
 CAMLprim value math_lgamma(value x) {
@@ -217,21 +148,6 @@ CAMLprim value math_llrint(value x) {
 CAMLprim value math_llround(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_int64(llround(Double_val(x))));
-}
-
-CAMLprim value math_log(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(log(Double_val(x))));
-}
-
-CAMLprim value math_log10(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(log10(Double_val(x))));
-}
-
-CAMLprim value math_log1p(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(log1p(Double_val(x))));
 }
 
 CAMLprim value math_log2(value x) {
@@ -325,26 +241,6 @@ CAMLprim value math_scalbn(value x, value y) {
 CAMLprim value math_signbit(value x) {
   CAMLparam1(x);
   CAMLreturn(Val_int(signbit(Double_val(x))));
-}
-
-CAMLprim value math_sin(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(sin(Double_val(x))));
-}
-
-CAMLprim value math_sinh(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(sinh(Double_val(x))));
-}
-
-CAMLprim value math_sqrt(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(sqrt(Double_val(x))));
-}
-
-CAMLprim value math_tan(value x) {
-  CAMLparam1(x);
-  CAMLreturn(caml_copy_double(tan(Double_val(x))));
 }
 
 CAMLprim value math_tanh(value x) {
