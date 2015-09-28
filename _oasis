@@ -12,7 +12,7 @@ Library "posix-math"
   Path:                 src/
   BuildTools:           ocamlbuild
   Modules:              Posix_math
-  CSources:             ocaml_posix_math.h, math.c
+  CSources:             ocaml-posix-math-complex.h, ocaml-posix-math-fenv.h, math.c, fenv.c
   CCLib:                -lm
   CCOpt:                -O2 -Wall -Wextra -Wno-unused-parameter
   BuildDepends:         result

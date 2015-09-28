@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: fa5f43ef078f1b28a7c1e41b1e5519aa) *)
+(* DO NOT EDIT (digest: 3c141b12513c0d5c59292020a24499ad) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -608,7 +608,12 @@ open Ocamlbuild_plugin;;
 let package_default =
   {
      MyOCamlbuildBase.lib_ocaml = [("posix-math", ["src"], [])];
-     lib_c = [("posix-math", "src/", ["src/ocaml_posix_math.h"])];
+     lib_c =
+       [
+          ("posix-math",
+            "src/",
+            ["src/ocaml-posix-math-complex.h"; "src/ocaml-posix-math-fenv.h"])
+       ];
      flags =
        [
           (["oasis_library_posix_math_ccopt"; "compile"],
@@ -639,6 +644,6 @@ let conf = {MyOCamlbuildFindlib.no_automatic_syntax = false}
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default conf package_default;;
 
-# 643 "myocamlbuild.ml"
+# 648 "myocamlbuild.ml"
 (* OASIS_STOP *)
 Ocamlbuild_plugin.dispatch dispatch_default;;

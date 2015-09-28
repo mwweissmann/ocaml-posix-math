@@ -26,12 +26,6 @@ let printi x =
   Printf.printf "%f + I * %f\n" x.re x.im
 
 let _ =
-  let x = 0.5 in
-  let () = Printf.printf "c: %f\n" (Posix_math.acos x) in
-  let () = Printf.printf "o: %f\n" (Pervasives.acos x) in
-  print_endline "done"
-
-let _ =
   let c = Complex.( { re = 13.0;  im = 9.0; } ) in
   printi c;
   let c1 = csin c in

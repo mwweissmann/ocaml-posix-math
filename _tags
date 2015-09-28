@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: b31275cd2f263acc57bf6686a34d90b8)
+# DO NOT EDIT (digest: 8410825dbcd81d21f1c2d33fbca555c0)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -18,6 +18,7 @@ true: annot, bin_annot
 "src/posix-math.cmxs": use_posix-math
 <src/*.ml{,i,y}>: oasis_library_posix_math_ccopt
 "src/math.c": oasis_library_posix_math_ccopt
+"src/fenv.c": oasis_library_posix_math_ccopt
 <src/posix-math.{cma,cmxa}>: oasis_library_posix_math_cclib
 "src/libposix-math_stubs.lib": oasis_library_posix_math_cclib
 "src/dllposix-math_stubs.dll": oasis_library_posix_math_cclib
@@ -26,6 +27,7 @@ true: annot, bin_annot
 <src/posix-math.{cma,cmxa}>: use_libposix-math_stubs
 <src/*.ml{,i,y}>: pkg_result
 "src/math.c": pkg_result
+"src/fenv.c": pkg_result
 # Executable test
 <test/test.{native,byte}>: pkg_result
 <test/test.{native,byte}>: use_posix-math

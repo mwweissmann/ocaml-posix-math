@@ -1,4 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: c4ac6b967a0f515dde6d042350252923)
+# DO NOT EDIT (digest: aa0e9dedf089840387b40f407c91e9d0)
 math.o
+fenv.o
 # OASIS_STOP
