@@ -34,6 +34,7 @@ external csinh : complex -> complex = "math_csinh"
 let csqrt = Complex.sqrt
 external ctan : complex -> complex = "math_ctan"
 external ctanh : complex -> complex = "math_ctanh"
+let exp = Pervasives.exp
 let ldexp = Pervasives.ldexp
 external lgamma : float -> float = "math_lgamma"
 external llrint : float -> int64 = "math_llrint"

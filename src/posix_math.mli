@@ -25,59 +25,164 @@ THE SOFTWARE.
   @author Markus W. Weissmann
 *)
 
+(** A comlex number as defined in the standard library *)
 type complex = Complex.t
 
+(** [acos x] calculates the arc cosine of x; in principle [cos (acos x) = x] holds but for floating point rounding errors. *)
 val acos : float -> float
+
+(** [acosh x] computes the hyperbolic cosine of x;  in principle [cosh (acosh x) = x] holds but for floating point rounding errors. *)
 val acosh : float -> float
+
+(** [asin x] computes the arc sine os x; in principle [sin (asin x) ] x] holds but for floating point rounding errors. *)
 val asin : float -> float
+
+(** [asinh x] computes the inverse hyperbolic sine of x; in principle [sinh (asinh x) = x] holds but for floating point rounding errors. *)
 val asinh : float -> float
+
+(** [atan x] computes the arc tangent of x; in principle [tan (atan x) = x] holds but for floating point rounding errors. *)
 val atan : float -> float
+
+(** [atan2 x y] computes the arc tangent of [y ./ x] in radians. *)
 val atan2 : float -> float -> float
+
+(** [atanh x] computes the inverse hyperbolic tangent of x; in principle [tanh (atanh x) = x] holds but for floating point rounding errors. *)
 val atanh : float -> float
+
+(** [cabs z] returns the absolute value of the complex number [z]. *)
 val cabs : complex -> float
+
+(** [cacos z] calculates  the complex arc cosine of [z]. If [y = cacos z] then [z = ccos y] holds. *)
 val cacos : complex -> complex
+
+(** cacosh z] calculates the complex arc hyperbolic cosine of [z]. *)
 val cacosh : complex -> complex
+
+(** [carg z] computes the radius of the number [z] in polar coordinates. In principle [tan (carg z) = cimag z ./ creal z] holds but for floating point rounding errors. *)
 val carg : complex -> float
+
+(** [casin z] computes the complex arc sine of [z]. *)
 val casin : complex -> complex
+
+(** [casinh z] computes the complex arc hyperbolic sine of z. If [y = casinh z] then [z = csinh y]. *)
 val casinh : complex -> complex
+
+(** [catan z] computes the  complex  arc  tangent  of  z. If [y = catan z] then [z = ctan z]. *)
 val catan : complex -> complex
+
+(** [catanh z] computes the complex arc hyperbolic tangent of z. If [y = catanh z] then [z = ctanh y]. *)
 val catanh : complex -> complex
+
+(** [cbrt x] computes the (real) cube root of [x]. *)
 val cbrt : float -> float
+
+(** [ccos z] computes the complex cosine of [z]. *)
 val ccos : complex -> complex
+
+(** [ccosh z] computes the complex hyperbolic cosine of [z]. *)
 val ccosh : complex -> complex
+
+(** [ceil x] computes the smallest integral value not less than [x]. *)
 val ceil : float -> float
+
+(** [cexp z] computes the complex exponent of [z], defined as e^z. *)
 val cexp : complex -> complex
+
+(** [cimag z] computes the imaginary part of [z]. *)
 val cimag : complex -> float
+
+(** [clog z] computes the complex natural (base e) logarithm of [z], with a branch cut along the negative real axis. *)
 val clog : complex -> complex
+
+(** [conj z] computes the complex conjugate of [z], by reversing the sign of its imaginary part. *)
 val conj : complex -> complex
+
+(** [copysign x y] computes a value with the magnitude of [x] and the sign of [y]. On implementations that represent a signed zero but do not treat negative zero consistently in arithmetic operations, these functions regard the sign of zero as positive. *)
 val copysign : float -> float -> float
+
+(** [cos x] computes the cosine of [x], measured in radians. *)
 val cos : float -> float
+
+(** [cosh] computes the hyperbolic cosine of [x]. *)
 val cosh : float -> float
+
+(** [cpow x y] computes the complex power function x^y, with a branch cut for the first parameter along the negative real axis. *)
 val cpow : complex -> complex -> complex
+
+(** [cproj z] computes a projection of [z] onto the Riemann sphere. *)
 val cproj : complex -> complex
+
+(** [creal z] computes the real part of [z]. *)
 val creal : complex -> float
+
+(** [csin z] computes the complex sine of [z]. *)
 val csin : complex -> complex
+
+(** [csinh z] computes the complex hyperbolic sine of [z]. *)
 val csinh : complex -> complex
+
+(** [csqrt z] computes the complex square root of [z], with a branch cut along the negative real axis. *)
 val csqrt : complex -> complex
+
+(** [ctan z] compute the complex tangent of [z]. *)
 val ctan : complex -> complex
+
+(** [ctanh z] computes the complex hyperbolic tangent of [z]. *)
 val ctanh : complex -> complex
+
+(** [exp x] computes the base-e exponential of [x]. *)
+val exp : float -> float
+
+(** [ldexp x i] computes the quantity [x .* 2 ^ exp]. *)
 val ldexp : float -> int -> float
+
+(** [lgamma x] returns the natural logarithm of the absolute value of the Gamma function. *)
 val lgamma : float -> float
+
+(** [llrint x] rounds it's argument to the nearest integer value, rounding according to the current rounding direction. *)
 val llrint : float -> int64
+
+(** [llround x] rounds it's argument to the nearest integer value, rounding halfway cases away from zero, regardless of the current rounding direction. *)
 val llround : float -> int64
+
+(** [log x] computes the natural logarithm of their argument [x]. *)
 val log : float -> float
+
+(** [log10 x] computes the base 10 logarithm of their argument [x]. *)
 val log10 : float -> float
+
+(** [log1p x] returns a value equivalent to [log (1 + x)]. *)
 val log1p : float -> float
+
+(** [log2 x] computes the base 2 logarithm of their argument [x]. *)
 val log2 : float -> float
+
+(** [logb x] extracts the exponent from the internal floating-point representation of [x] and return it as a floating-point value. *)
 val logb : float -> float
+
+(** [lrint x] rounds it's argument to the nearest integer value, rounding according to the current rounding direction. *)
 val lrint : float -> int32
+
+(** [lround x] rounds it's argument to the nearest integer value, rounding halfway cases away from zero, regardless of the current rounding direction. *)
 val lround : float -> int32
+
+(** [modf x] break the argument [x] into integral and fractional parts, each of which has the same sign as the argument. *)
 val modf : float -> float * float
+
+(** [nearbyint x] rounds it's argument to an integer value in floating-point format, using the current rounding direction and without raising the inexact floating-point exception. *)
 val nearbyint : float -> float
+
+(** [nextafter x y] computes the next representable floating-point value following x in the direction of y. *)
 val nextafter : float -> float -> float
 val nexttoward : float -> float -> float
+
+(** [pow x y] computes the value of [x] raised to the power [y]. If x is negative, the application shall ensure that y is an integer value. *)
 val pow : float -> float -> float
+
+(** [remainder x y] computes the remainder of dividing [x] by [y]. The return value is [x .- n .* y], where [n] is the value [x ./ y], rounded to the nearest integer. If the absolute value of [x .- n .* y] is [0.5], [n] is chosen to be even. *)
 val remainder : float -> float -> float
+
+(** [remquo x y] *)
 val remquo : float -> float -> float * int 
 val rint : float -> float
 val round : float -> float
