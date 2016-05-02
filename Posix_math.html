@@ -22,60 +22,220 @@ POSIX math<br>
 <hr width="100%">
 
 <pre><span id="TYPEcomplex"><span class="keyword">type</span> <code class="type"></code>complex</span> = <code class="type">Complex.t</code> </pre>
+<div class="info ">
+A comlex number as defined in the standard library<br>
+</div>
 
 
-<pre><span id="VALacos"><span class="keyword">val</span> acos</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALacosh"><span class="keyword">val</span> acosh</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALasin"><span class="keyword">val</span> asin</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALasinh"><span class="keyword">val</span> asinh</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALatan"><span class="keyword">val</span> atan</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALatan2"><span class="keyword">val</span> atan2</span> : <code class="type">float -> float -> float</code></pre>
-<pre><span id="VALatanh"><span class="keyword">val</span> atanh</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALcabs"><span class="keyword">val</span> cabs</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> float</code></pre>
-<pre><span id="VALcacos"><span class="keyword">val</span> cacos</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcacosh"><span class="keyword">val</span> cacosh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcarg"><span class="keyword">val</span> carg</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> float</code></pre>
-<pre><span id="VALcasin"><span class="keyword">val</span> casin</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcasinh"><span class="keyword">val</span> casinh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcatan"><span class="keyword">val</span> catan</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcatanh"><span class="keyword">val</span> catanh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcbrt"><span class="keyword">val</span> cbrt</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALccos"><span class="keyword">val</span> ccos</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALccosh"><span class="keyword">val</span> ccosh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALceil"><span class="keyword">val</span> ceil</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALcexp"><span class="keyword">val</span> cexp</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcimag"><span class="keyword">val</span> cimag</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> float</code></pre>
-<pre><span id="VALclog"><span class="keyword">val</span> clog</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALconj"><span class="keyword">val</span> conj</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcopysign"><span class="keyword">val</span> copysign</span> : <code class="type">float -> float -> float</code></pre>
-<pre><span id="VALcos"><span class="keyword">val</span> cos</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALcosh"><span class="keyword">val</span> cosh</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALcpow"><span class="keyword">val</span> cpow</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcproj"><span class="keyword">val</span> cproj</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcreal"><span class="keyword">val</span> creal</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> float</code></pre>
-<pre><span id="VALcsin"><span class="keyword">val</span> csin</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcsinh"><span class="keyword">val</span> csinh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALcsqrt"><span class="keyword">val</span> csqrt</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALctan"><span class="keyword">val</span> ctan</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALctanh"><span class="keyword">val</span> ctanh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre>
-<pre><span id="VALldexp"><span class="keyword">val</span> ldexp</span> : <code class="type">float -> int -> float</code></pre>
-<pre><span id="VALlgamma"><span class="keyword">val</span> lgamma</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALllrint"><span class="keyword">val</span> llrint</span> : <code class="type">float -> int64</code></pre>
-<pre><span id="VALllround"><span class="keyword">val</span> llround</span> : <code class="type">float -> int64</code></pre>
-<pre><span id="VALlog"><span class="keyword">val</span> log</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALlog10"><span class="keyword">val</span> log10</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALlog1p"><span class="keyword">val</span> log1p</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALlog2"><span class="keyword">val</span> log2</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALlogb"><span class="keyword">val</span> logb</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALlrint"><span class="keyword">val</span> lrint</span> : <code class="type">float -> int32</code></pre>
-<pre><span id="VALlround"><span class="keyword">val</span> lround</span> : <code class="type">float -> int32</code></pre>
-<pre><span id="VALmodf"><span class="keyword">val</span> modf</span> : <code class="type">float -> float * float</code></pre>
-<pre><span id="VALnearbyint"><span class="keyword">val</span> nearbyint</span> : <code class="type">float -> float</code></pre>
-<pre><span id="VALnextafter"><span class="keyword">val</span> nextafter</span> : <code class="type">float -> float -> float</code></pre>
+<pre><span id="VALacos"><span class="keyword">val</span> acos</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">acos x</code> calculates the arc cosine of x; in principle <code class="code">cos (acos x) = x</code> holds but for floating point rounding errors.<br>
+</div>
+
+<pre><span id="VALacosh"><span class="keyword">val</span> acosh</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">acosh x</code> computes the hyperbolic cosine of x;  in principle <code class="code">cosh (acosh x) = x</code> holds but for floating point rounding errors.<br>
+</div>
+
+<pre><span id="VALasin"><span class="keyword">val</span> asin</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">asin x</code> computes the arc sine os x; in principle <code class="code">sin (asin x) = x</code> holds but for floating point rounding errors.<br>
+</div>
+
+<pre><span id="VALasinh"><span class="keyword">val</span> asinh</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">asinh x</code> computes the inverse hyperbolic sine of x; in principle <code class="code">sinh (asinh x) = x</code> holds but for floating point rounding errors.<br>
+</div>
+
+<pre><span id="VALatan"><span class="keyword">val</span> atan</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">atan x</code> computes the arc tangent of x; in principle <code class="code">tan (atan x) = x</code> holds but for floating point rounding errors.<br>
+</div>
+
+<pre><span id="VALatan2"><span class="keyword">val</span> atan2</span> : <code class="type">float -> float -> float</code></pre><div class="info ">
+<code class="code">atan2 x y</code> computes the arc tangent of <code class="code">y ./ x</code> in radians.<br>
+</div>
+
+<pre><span id="VALatanh"><span class="keyword">val</span> atanh</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">atanh x</code> computes the inverse hyperbolic tangent of x; in principle <code class="code">tanh (atanh x) = x</code> holds but for floating point rounding errors.<br>
+</div>
+
+<pre><span id="VALcabs"><span class="keyword">val</span> cabs</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> float</code></pre><div class="info ">
+<code class="code">cabs z</code> returns the absolute value of the complex number <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALcacos"><span class="keyword">val</span> cacos</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">cacos z</code> calculates  the complex arc cosine of <code class="code">z</code>. If <code class="code">y = cacos z</code> then <code class="code">z = ccos y</code> holds.<br>
+</div>
+
+<pre><span id="VALcacosh"><span class="keyword">val</span> cacosh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">cacosh z</code> calculates the complex arc hyperbolic cosine of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALcarg"><span class="keyword">val</span> carg</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> float</code></pre><div class="info ">
+<code class="code">carg z</code> computes the radius of the number <code class="code">z</code> in polar coordinates. In principle <code class="code">tan (carg z) = cimag z ./ creal z</code> holds but for floating point rounding errors.<br>
+</div>
+
+<pre><span id="VALcasin"><span class="keyword">val</span> casin</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">casin z</code> computes the complex arc sine of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALcasinh"><span class="keyword">val</span> casinh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">casinh z</code> computes the complex arc hyperbolic sine of z. If <code class="code">y = casinh z</code> then <code class="code">z = csinh y</code>.<br>
+</div>
+
+<pre><span id="VALcatan"><span class="keyword">val</span> catan</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">catan z</code> computes the  complex  arc  tangent  of  z. If <code class="code">y = catan z</code> then <code class="code">z = ctan z</code>.<br>
+</div>
+
+<pre><span id="VALcatanh"><span class="keyword">val</span> catanh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">catanh z</code> computes the complex arc hyperbolic tangent of z. If <code class="code">y = catanh z</code> then <code class="code">z = ctanh y</code>.<br>
+</div>
+
+<pre><span id="VALcbrt"><span class="keyword">val</span> cbrt</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">cbrt x</code> computes the (real) cube root of <code class="code">x</code>.<br>
+</div>
+
+<pre><span id="VALccos"><span class="keyword">val</span> ccos</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">ccos z</code> computes the complex cosine of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALccosh"><span class="keyword">val</span> ccosh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">ccosh z</code> computes the complex hyperbolic cosine of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALceil"><span class="keyword">val</span> ceil</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">ceil x</code> computes the smallest integral value not less than <code class="code">x</code>.<br>
+</div>
+
+<pre><span id="VALcexp"><span class="keyword">val</span> cexp</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">cexp z</code> computes the complex exponent of <code class="code">z</code>, defined as e^z.<br>
+</div>
+
+<pre><span id="VALcimag"><span class="keyword">val</span> cimag</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> float</code></pre><div class="info ">
+<code class="code">cimag z</code> computes the imaginary part of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALclog"><span class="keyword">val</span> clog</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">clog z</code> computes the complex natural (base e) logarithm of <code class="code">z</code>, with a branch cut along the negative real axis.<br>
+</div>
+
+<pre><span id="VALconj"><span class="keyword">val</span> conj</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">conj z</code> computes the complex conjugate of <code class="code">z</code>, by reversing the sign of its imaginary part.<br>
+</div>
+
+<pre><span id="VALcopysign"><span class="keyword">val</span> copysign</span> : <code class="type">float -> float -> float</code></pre><div class="info ">
+<code class="code">copysign x y</code> computes a value with the magnitude of <code class="code">x</code> and the sign of <code class="code">y</code>. On implementations that represent a signed zero but do not treat negative zero consistently in arithmetic operations, these functions regard the sign of zero as positive.<br>
+</div>
+
+<pre><span id="VALcos"><span class="keyword">val</span> cos</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">cos x</code> computes the cosine of <code class="code">x</code>, measured in radians.<br>
+</div>
+
+<pre><span id="VALcosh"><span class="keyword">val</span> cosh</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">cosh</code> computes the hyperbolic cosine of <code class="code">x</code>.<br>
+</div>
+
+<pre><span id="VALcpow"><span class="keyword">val</span> cpow</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">cpow x y</code> computes the complex power function x^y, with a branch cut for the first parameter along the negative real axis.<br>
+</div>
+
+<pre><span id="VALcproj"><span class="keyword">val</span> cproj</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">cproj z</code> computes a projection of <code class="code">z</code> onto the Riemann sphere.<br>
+</div>
+
+<pre><span id="VALcreal"><span class="keyword">val</span> creal</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> float</code></pre><div class="info ">
+<code class="code">creal z</code> computes the real part of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALcsin"><span class="keyword">val</span> csin</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">csin z</code> computes the complex sine of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALcsinh"><span class="keyword">val</span> csinh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">csinh z</code> computes the complex hyperbolic sine of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALcsqrt"><span class="keyword">val</span> csqrt</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">csqrt z</code> computes the complex square root of <code class="code">z</code>, with a branch cut along the negative real axis.<br>
+</div>
+
+<pre><span id="VALctan"><span class="keyword">val</span> ctan</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">ctan z</code> compute the complex tangent of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALctanh"><span class="keyword">val</span> ctanh</span> : <code class="type"><a href="Posix_math.html#TYPEcomplex">complex</a> -> <a href="Posix_math.html#TYPEcomplex">complex</a></code></pre><div class="info ">
+<code class="code">ctanh z</code> computes the complex hyperbolic tangent of <code class="code">z</code>.<br>
+</div>
+
+<pre><span id="VALexp"><span class="keyword">val</span> exp</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">exp x</code> computes the base-e exponential of <code class="code">x</code>.<br>
+</div>
+
+<pre><span id="VALldexp"><span class="keyword">val</span> ldexp</span> : <code class="type">float -> int -> float</code></pre><div class="info ">
+<code class="code">ldexp x i</code> computes the quantity <code class="code">x .* 2 ^ exp</code>.<br>
+</div>
+
+<pre><span id="VALlgamma"><span class="keyword">val</span> lgamma</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">lgamma x</code> returns the natural logarithm of the absolute value of the Gamma function.<br>
+</div>
+
+<pre><span id="VALllrint"><span class="keyword">val</span> llrint</span> : <code class="type">float -> int64</code></pre><div class="info ">
+<code class="code">llrint x</code> rounds it's argument to the nearest integer value, rounding according to the current rounding direction.<br>
+</div>
+
+<pre><span id="VALllround"><span class="keyword">val</span> llround</span> : <code class="type">float -> int64</code></pre><div class="info ">
+<code class="code">llround x</code> rounds it's argument to the nearest integer value, rounding halfway cases away from zero, regardless of the current rounding direction.<br>
+</div>
+
+<pre><span id="VALlog"><span class="keyword">val</span> log</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">log x</code> computes the natural logarithm of their argument <code class="code">x</code>.<br>
+</div>
+
+<pre><span id="VALlog10"><span class="keyword">val</span> log10</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">log10 x</code> computes the base 10 logarithm of their argument <code class="code">x</code>.<br>
+</div>
+
+<pre><span id="VALlog1p"><span class="keyword">val</span> log1p</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">log1p x</code> returns a value equivalent to <code class="code">log (1 + x)</code>.<br>
+</div>
+
+<pre><span id="VALlog2"><span class="keyword">val</span> log2</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">log2 x</code> computes the base 2 logarithm of their argument <code class="code">x</code>.<br>
+</div>
+
+<pre><span id="VALlogb"><span class="keyword">val</span> logb</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">logb x</code> extracts the exponent from the internal floating-point representation of <code class="code">x</code> and return it as a floating-point value.<br>
+</div>
+
+<pre><span id="VALlrint"><span class="keyword">val</span> lrint</span> : <code class="type">float -> int32</code></pre><div class="info ">
+<code class="code">lrint x</code> rounds it's argument to the nearest integer value, rounding according to the current rounding direction.<br>
+</div>
+
+<pre><span id="VALlround"><span class="keyword">val</span> lround</span> : <code class="type">float -> int32</code></pre><div class="info ">
+<code class="code">lround x</code> rounds it's argument to the nearest integer value, rounding halfway cases away from zero, regardless of the current rounding direction.<br>
+</div>
+
+<pre><span id="VALmodf"><span class="keyword">val</span> modf</span> : <code class="type">float -> float * float</code></pre><div class="info ">
+<code class="code">modf x</code> break the argument <code class="code">x</code> into integral and fractional parts, each of which has the same sign as the argument.<br>
+</div>
+
+<pre><span id="VALnearbyint"><span class="keyword">val</span> nearbyint</span> : <code class="type">float -> float</code></pre><div class="info ">
+<code class="code">nearbyint x</code> rounds it's argument to an integer value in floating-point format, using the current rounding direction and without raising the inexact floating-point exception.<br>
+</div>
+
+<pre><span id="VALnextafter"><span class="keyword">val</span> nextafter</span> : <code class="type">float -> float -> float</code></pre><div class="info ">
+<code class="code">nextafter x y</code> computes the next representable floating-point value following x in the direction of y.<br>
+</div>
+
 <pre><span id="VALnexttoward"><span class="keyword">val</span> nexttoward</span> : <code class="type">float -> float -> float</code></pre>
-<pre><span id="VALpow"><span class="keyword">val</span> pow</span> : <code class="type">float -> float -> float</code></pre>
-<pre><span id="VALremainder"><span class="keyword">val</span> remainder</span> : <code class="type">float -> float -> float</code></pre>
-<pre><span id="VALremquo"><span class="keyword">val</span> remquo</span> : <code class="type">float -> float -> float * int</code></pre>
+<pre><span id="VALpow"><span class="keyword">val</span> pow</span> : <code class="type">float -> float -> float</code></pre><div class="info ">
+<code class="code">pow x y</code> computes the value of <code class="code">x</code> raised to the power <code class="code">y</code>. If x is negative, the application shall ensure that y is an integer value.<br>
+</div>
+
+<pre><span id="VALremainder"><span class="keyword">val</span> remainder</span> : <code class="type">float -> float -> float</code></pre><div class="info ">
+<code class="code">remainder x y</code> computes the remainder of dividing <code class="code">x</code> by <code class="code">y</code>. The return value is <code class="code">x .- n .* y</code>, where <code class="code">n</code> is the value <code class="code">x ./ y</code>, rounded to the nearest integer. If the absolute value of <code class="code">x .- n .* y</code> is <code class="code">0.5</code>, <code class="code">n</code> is chosen to be even.<br>
+</div>
+
+<pre><span id="VALremquo"><span class="keyword">val</span> remquo</span> : <code class="type">float -> float -> float * int</code></pre><div class="info ">
+<code class="code">remquo x y</code><br>
+</div>
+
 <pre><span id="VALrint"><span class="keyword">val</span> rint</span> : <code class="type">float -> float</code></pre>
 <pre><span id="VALround"><span class="keyword">val</span> round</span> : <code class="type">float -> float</code></pre>
 <pre><span id="VALscalbln"><span class="keyword">val</span> scalbln</span> : <code class="type">float -> int64 -> float</code></pre>
