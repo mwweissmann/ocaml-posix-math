@@ -34,7 +34,7 @@ val acos : float -> float
 (** [acosh x] computes the hyperbolic cosine of x;  in principle [cosh (acosh x) = x] holds but for floating point rounding errors. *)
 val acosh : float -> float
 
-(** [asin x] computes the arc sine os x; in principle [sin (asin x) ] x] holds but for floating point rounding errors. *)
+(** [asin x] computes the arc sine os x; in principle [sin (asin x) = x] holds but for floating point rounding errors. *)
 val asin : float -> float
 
 (** [asinh x] computes the inverse hyperbolic sine of x; in principle [sinh (asinh x) = x] holds but for floating point rounding errors. *)
@@ -55,7 +55,7 @@ val cabs : complex -> float
 (** [cacos z] calculates  the complex arc cosine of [z]. If [y = cacos z] then [z = ccos y] holds. *)
 val cacos : complex -> complex
 
-(** cacosh z] calculates the complex arc hyperbolic cosine of [z]. *)
+(** [cacosh z] calculates the complex arc hyperbolic cosine of [z]. *)
 val cacosh : complex -> complex
 
 (** [carg z] computes the radius of the number [z] in polar coordinates. In principle [tan (carg z) = cimag z ./ creal z] holds but for floating point rounding errors. *)
