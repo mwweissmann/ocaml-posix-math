@@ -1,5 +1,20 @@
 type complex = Complex.t
 
+external math_init : unit -> float * float * float * float * float * float *float * float * float * float * float * float * float = "math_init"
+let m_e,
+  m_log2e,
+  m_log10e,
+  m_ln2,
+  m_ln10,
+  m_pi,
+  m_pi_2,
+  m_pi_4,
+  m_1_pi,
+  m_2_pi,
+  m_2_sqrtpi,
+  m_sqrt2,
+  m_sqrt1_2 = math_init ()
+
 let acos = Pervasives.acos
 external acosh : float -> float = "math_acosh"
 let asin = Pervasives.asin
@@ -23,7 +38,7 @@ let cexp = Complex.exp
 let cimag x = Complex.(x.im)
 let clog = Complex.log
 let conj = Complex.conj
-external copysign : float -> float -> float = "math_copysign"
+let copysign = Pervasives.copysign
 let cos = Pervasives.cos
 external cosh : float -> float = "math_cosh"
 let cpow = Complex.pow
@@ -35,6 +50,7 @@ let csqrt = Complex.sqrt
 external ctan : complex -> complex = "math_ctan"
 external ctanh : complex -> complex = "math_ctanh"
 let exp = Pervasives.exp
+external hypot : float -> float -> float = "math_hypot"
 let ldexp = Pervasives.ldexp
 external lgamma : float -> float = "math_lgamma"
 external llrint : float -> int64 = "math_llrint"

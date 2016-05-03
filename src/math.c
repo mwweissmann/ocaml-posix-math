@@ -19,6 +19,27 @@
 
 #include "ocaml-posix-math-complex.h"
 
+CAMLprim value math_init(void) {
+  CAMLparam0();
+  CAMLlocal1(v);
+  v = caml_alloc(13, 0);
+  Store_field(v, 0, caml_copy_double(M_E));
+  Store_field(v, 1, caml_copy_double(M_LOG2E));
+  Store_field(v, 2, caml_copy_double(M_LOG10E));
+  Store_field(v, 3, caml_copy_double(M_LN2));
+  Store_field(v, 4, caml_copy_double(M_LN10));
+  Store_field(v, 5, caml_copy_double(M_PI));
+  Store_field(v, 6, caml_copy_double(M_PI_2));
+  Store_field(v, 7, caml_copy_double(M_PI_4));
+  Store_field(v, 8, caml_copy_double(M_1_PI));
+  Store_field(v, 9, caml_copy_double(M_2_PI));
+  Store_field(v, 10, caml_copy_double(M_2_SQRTPI));
+  Store_field(v, 11, caml_copy_double(M_SQRT2));
+  Store_field(v, 12, caml_copy_double(M_SQRT1_2));
+
+  CAMLreturn(v);
+}
+
 CAMLprim value caml_copy_complex(double complex c) {
   CAMLparam0();
   CAMLlocal1(v);
@@ -98,11 +119,6 @@ CAMLprim value math_ceil(value x) {
   CAMLreturn(caml_copy_double(ceil(Double_val(x))));
 }
 
-CAMLprim value math_copysign(value x, value y) {
-  CAMLparam2(x, y);
-  CAMLreturn(caml_copy_double(copysign(Double_val(x), Double_val(y))));
-}
-
 CAMLprim value math_cosh(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_double(cosh(Double_val(x))));
@@ -131,6 +147,11 @@ CAMLprim value math_ctan(value x) {
 CAMLprim value math_ctanh(value x) {
   CAMLparam1(x);
   CAMLreturn(caml_copy_complex(ctanh(Complex_val(x))));
+}
+
+CAMLprim value math_hypot(value x, value y) {
+  CAMLparam2(x, y);
+  CAMLreturn(caml_copy_double(hypot(Double_val(x), Double_val(y))));
 }
 
 CAMLprim value math_lgamma(value x) {

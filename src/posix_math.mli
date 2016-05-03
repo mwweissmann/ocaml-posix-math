@@ -25,6 +25,20 @@ THE SOFTWARE.
   @author Markus W. Weissmann
 *)
 
+val m_e : float
+val m_log2e : float
+val m_log10e : float
+val m_ln2 : float
+val m_ln10 : float
+val m_pi : float
+val m_pi_2 : float
+val m_pi_4 : float
+val m_1_pi : float
+val m_2_pi : float
+val m_2_sqrtpi : float
+val m_sqrt2 : float
+val m_sqrt1_2 : float
+
 (** A comlex number as defined in the standard library *)
 type complex = Complex.t
 
@@ -34,7 +48,7 @@ val acos : float -> float
 (** [acosh x] computes the hyperbolic cosine of x;  in principle [cosh (acosh x) = x] holds but for floating point rounding errors. *)
 val acosh : float -> float
 
-(** [asin x] computes the arc sine os x; in principle [sin (asin x) = x] holds but for floating point rounding errors. *)
+(** [asin x] computes the arc sine os x; in principle [sin (asin x) ] x] holds but for floating point rounding errors. *)
 val asin : float -> float
 
 (** [asinh x] computes the inverse hyperbolic sine of x; in principle [sinh (asinh x) = x] holds but for floating point rounding errors. *)
@@ -55,7 +69,7 @@ val cabs : complex -> float
 (** [cacos z] calculates  the complex arc cosine of [z]. If [y = cacos z] then [z = ccos y] holds. *)
 val cacos : complex -> complex
 
-(** [cacosh z] calculates the complex arc hyperbolic cosine of [z]. *)
+(** cacosh z] calculates the complex arc hyperbolic cosine of [z]. *)
 val cacosh : complex -> complex
 
 (** [carg z] computes the radius of the number [z] in polar coordinates. In principle [tan (carg z) = cimag z ./ creal z] holds but for floating point rounding errors. *)
@@ -132,6 +146,8 @@ val ctanh : complex -> complex
 
 (** [exp x] computes the base-e exponential of [x]. *)
 val exp : float -> float
+
+val hypot : float -> float -> float
 
 (** [ldexp x i] computes the quantity [x .* 2 ^ exp]. *)
 val ldexp : float -> int -> float
